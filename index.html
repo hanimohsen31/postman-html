@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Postman Simulator</title>
+    <!-- booststap styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+      integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Postman Simulator</h1>
+
+      <form id="requestForm">
+        <div class="form-group">
+          <label for="method">Method:</label>
+          <select class="form-select" id="method" name="method">
+            <option value="GET" selected>GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="url">URL:</label>
+          <input class="form-control" type="text" id="url" name="url" required />
+        </div>
+
+        <div class="form-group">
+          <label for="authorization">Authorization (Token only):</label>
+          <textarea class="form-control" type="text" id="authorization" name="authorization" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="body">Body:</label>
+          <textarea class="form-control" id="body" name="body" rows="4"></textarea>
+        </div>
+
+        <button type="submit">Send Request</button>
+      </form>
+
+      <pre id="responseOutput"></pre>
+    </div>
+    <!-- bootstrap scripts -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+      integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- scripts -->
+    <script src="./scripts.js"></script>
+  </body>
+</html>
