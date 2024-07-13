@@ -3,61 +3,129 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Postman Simulator</title>
+    <title>APIs</title>
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
     <!-- booststap styles -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
-      integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- styles -->
     <link rel="stylesheet" href="./styles.css" />
   </head>
 
   <body>
     <div class="container">
-      <h1>Postman Simulator</h1>
-
+      <h1>Jujubeman</h1>
       <form id="requestForm">
-        <div class="form-group">
-          <label for="method">Method:</label>
-          <select class="form-select" id="method" name="method">
-            <option value="GET" selected>GET</option>
-            <option value="POST">POST</option>
-            <option value="PUT">PUT</option>
-            <option value="DELETE">DELETE</option>
-          </select>
+        <div class="request-main">
+          <!-- method -->
+          <div class="form-group">
+            <label for="method">Method:</label>
+            <select class="form-select" id="method" name="method">
+              <option value="GET" selected>GET</option>
+              <option value="POST">POST</option>
+              <option value="PUT">PUT</option>
+              <option value="DELETE">DELETE</option>
+            </select>
+          </div>
+          <!-- url -->
+          <div class="form-group">
+            <label for="url">URL:</label>
+            <input class="form-control" type="text" id="url" name="url" placeholder="" required />
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="url">URL:</label>
-          <input class="form-control" type="text" id="url" name="url" required />
+        <div class="request-headers">
+          <!-- token -->
+          <div class="form-group">
+            <label for="authorization">Authorization (Token only):</label>
+            <textarea class="form-control" type="text" id="authorization" name="authorization" rows="5"></textarea>
+          </div>
+          <!-- headers -->
+          <div class="form-group">
+            <label for="headersInput">Headers</label>
+            <textarea class="form-control" type="text" id="headersInput" name="headersInput" rows="5"></textarea>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="authorization">Authorization (Token only):</label>
-          <textarea class="form-control" type="text" id="authorization" name="authorization" rows="4"></textarea>
+        <!-- buttons -->
+        <div class="buttons-group w-100">
+          <div class="save btn btn-primary" onclick="saveToken()">Save Token</div>
+          <div class="clear btn btn-outline-danger" onclick="clearLocalStorage()">Clear Cach</div>
+          <!-- send headers -->
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="sendHeaders" name="sendHeaders" checked />
+            <label class="form-check-label" for="sendHeaders">Send Headers</label>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="body">Body:</label>
-          <textarea class="form-control" id="body" name="body" rows="4"></textarea>
+        <!-- request body -->
+        <div class="form-group mt-3">
+          <label for="requestBody">Body:</label>
+          <textarea class="form-control" id="requestBody" name="requestBody" rows="5"></textarea>
         </div>
 
         <button type="submit">Send Request</button>
       </form>
 
+      <div id="notification" class="d-none"></div>
       <pre id="responseOutput"></pre>
+
+      <!-- accordion -->
+      <div class="accordion my-4" id="accordion">
+        <!-- item 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <div class="d-flex">
+              <!-- <button class="btn btn-outline-primary make-visible">Visible</button> -->
+              <button class="accordion-button collapsed" id="toggleFirstAccordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Headers</button>
+            </div>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordion">
+            <div class="accordion-body">
+              <pre id="responseHeaders"></pre>
+            </div>
+          </div>
+        </div>
+        <!-- item 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <div class="d-flex">
+              <button class="btn btn-outline-primary make-visible" onclick="makeVisible()">Visible</button>
+              <button class="accordion-button collapsed" id="toggleSecondAccordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Save Options</button>
+            </div>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
+            <div class="accordion-body">
+              <div class="saved">
+                <!-- project -->
+                <div class="form-group">
+                  <label for="projectsList">Project:</label>
+                  <select class="form-select" id="projectsList" name="projectsList" onchange="getAPIsSelectOptions()"></select>
+                </div>
+                <!-- api -->
+                <div class="form-group">
+                  <label for="apisList">API:</label>
+                  <select class="form-select" id="apisList" name="apisList" onchange="resetInputsUponAPI()"></select>
+                </div>
+              </div>
+
+              <div class="save mt-3">
+                <div class="form-group">
+                  <label for="projectName">Project Name:</label>
+                  <input class="form-control" type="text" id="projectName" name="projectName" />
+                </div>
+                <div class="form-group">
+                  <label for="apiName">API Name:</label>
+                  <input class="form-control" type="text" id="apiName" name="apiName" />
+                </div>
+                <div class="save btn btn-outline-primary" onclick="saveAPI()">Save API</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- bootstrap scripts -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
-      integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- scripts -->
     <script src="./scripts.js"></script>
   </body>

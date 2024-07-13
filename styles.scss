@@ -1,0 +1,196 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  // margin: 50px;
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 70%;
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      .form-group {
+        margin-bottom: 15px;
+
+        label {
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+          width: 100%;
+          max-width: 100%;
+          min-width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          &::placeholder {
+            // color: blue;
+            opacity: 0.4;
+          }
+        }
+
+        .form-check {
+          label {
+            width: fit-content;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+          }
+          input {
+            cursor: pointer;
+          }
+        }
+
+        .buttons-group {
+          display: flex;
+          gap: 10px;
+          .save,
+          .clear {
+            width: 100%;
+          }
+        }
+      }
+
+      .request-main {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        .form-group {
+          &:first-child {
+            flex: 1;
+          }
+          &:last-child {
+            flex: 6;
+          }
+        }
+      }
+
+      .request-headers {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        .form-group {
+          &:first-child {
+            flex: 1;
+          }
+          &:last-child {
+            flex: 1;
+          }
+        }
+      }
+
+      .buttons-group {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        &:hover {
+          background-color: #218838;
+        }
+      }
+    }
+
+    #accordion {
+      .make-visible{
+        display: flex;
+        word-break: keep-all;
+        /* display: block; */
+        width: fit-content;
+        // width: 150px;
+        align-items: center;
+      }
+      .accordion-button {
+        box-shadow: none;
+        background-color: transparent;
+        // background-color: #28a745;
+        // color: white;
+        // opacity: .4;
+      }
+
+      .saved {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        .form-group {
+          &:first-child {
+            flex: 1;
+          }
+          &:last-child {
+            flex: 3;
+          }
+        }
+      }
+
+      .save {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: flex-end;
+        .form-group {
+          &:first-child {
+            flex: 3;
+          }
+          &:nth-child(2) {
+            flex: 5;
+          }
+        }
+        .btn {
+          flex: 1;
+          word-break: keep-all;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+    #notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: fit-content;
+      padding: 20px;
+      // transition: property duration timing-function delay|initial|inherit;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      z-index: 10000;
+      span{
+        border-radius: 5px;
+        margin: 5px;
+        box-shadow: #f4f4f4 0 0;
+      }
+    }
+
+    pre {
+      background-color: #f8f8f8;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  }
+}

@@ -6,33 +6,28 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
-
-.container {
+body .container {
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 70%;
 }
-
-h1 {
+body .container h1 {
   text-align: center;
 }
-
-.form-group {
+body .container form .form-group {
   margin-bottom: 15px;
 }
-
-label {
+body .container form .form-group label {
   display: block;
   margin-bottom: 5px;
 }
-
-input[type='text'],
-textarea,
-select {
+body .container form .form-group input[type=text],
+body .container form .form-group textarea,
+body .container form .form-group select {
   width: 100%;
   max-width: 100%;
   min-width: 100%;
@@ -40,8 +35,60 @@ select {
   border: 1px solid #ccc;
   border-radius: 3px;
 }
-
-button {
+body .container form .form-group input[type=text]::-moz-placeholder, body .container form .form-group textarea::-moz-placeholder, body .container form .form-group select::-moz-placeholder {
+  opacity: 0.4;
+}
+body .container form .form-group input[type=text]::placeholder,
+body .container form .form-group textarea::placeholder,
+body .container form .form-group select::placeholder {
+  opacity: 0.4;
+}
+body .container form .form-group .form-check label {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+body .container form .form-group .form-check input {
+  cursor: pointer;
+}
+body .container form .form-group .buttons-group {
+  display: flex;
+  gap: 10px;
+}
+body .container form .form-group .buttons-group .save,
+body .container form .form-group .buttons-group .clear {
+  width: 100%;
+}
+body .container form .request-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+body .container form .request-main .form-group:first-child {
+  flex: 1;
+}
+body .container form .request-main .form-group:last-child {
+  flex: 6;
+}
+body .container form .request-headers {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+body .container form .request-headers .form-group:first-child {
+  flex: 1;
+}
+body .container form .request-headers .form-group:last-child {
+  flex: 1;
+}
+body .container form .buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+body .container form button[type=submit] {
   width: 100%;
   padding: 10px;
   background-color: #28a745;
@@ -50,12 +97,68 @@ button {
   border-radius: 3px;
   cursor: pointer;
 }
-
-button:hover {
+body .container form button[type=submit]:hover {
   background-color: #218838;
 }
-
-pre {
+body .container #accordion .make-visible {
+  display: flex;
+  word-break: keep-all;
+  /* display: block; */
+  width: -moz-fit-content;
+  width: fit-content;
+  align-items: center;
+}
+body .container #accordion .accordion-button {
+  box-shadow: none;
+  background-color: transparent;
+}
+body .container #accordion .saved {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+body .container #accordion .saved .form-group:first-child {
+  flex: 1;
+}
+body .container #accordion .saved .form-group:last-child {
+  flex: 3;
+}
+body .container #accordion .save {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-end;
+}
+body .container #accordion .save .form-group:first-child {
+  flex: 3;
+}
+body .container #accordion .save .form-group:nth-child(2) {
+  flex: 5;
+}
+body .container #accordion .save .btn {
+  flex: 1;
+  word-break: keep-all;
+  display: flex;
+  justify-content: center;
+}
+body .container #notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  z-index: 10000;
+}
+body .container #notification span {
+  border-radius: 5px;
+  margin: 5px;
+  box-shadow: #f4f4f4 0 0;
+}
+body .container pre {
   background-color: #f8f8f8;
   padding: 10px;
   border: 1px solid #ccc;
@@ -63,4 +166,4 @@ pre {
   margin-top: 20px;
   white-space: pre-wrap;
   word-wrap: break-word;
-}
+}/*# sourceMappingURL=styles.css.map */
