@@ -66,7 +66,8 @@
         <button type="submit">Send Request</button>
       </form>
 
-      <div id="notification" class="d-none"></div>
+      <!-- <div id="notification" class="notification d-none"></div> -->
+      <div id="notificationsContainer"></div>
       <pre id="responseOutput"></pre>
 
       <!-- accordion -->
@@ -88,8 +89,15 @@
         <!-- item 2 -->
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <div class="d-flex">
-              <button class="btn btn-outline-primary make-visible" onclick="makeVisible()">Visible</button>
+            <div class="d-flex position-relative">
+
+              <div class="visibility-button">
+                <span class="invisible">Save Options</span>
+                <button class="make-visible" onclick="makeVisible()">
+                  <span id="secondVisible">Visiblity</span>
+                </button>
+              </div>
+
               <button class="accordion-button collapsed" id="toggleSecondAccordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Save Options</button>
             </div>
           </h2>

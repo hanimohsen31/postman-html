@@ -12,7 +12,7 @@ let projectsList = ""
 let apisList = ""
 let headers = {}
 let hasErrors = false
-let notificationTimeout
+let notificationsList = []
 const localStorageTokenName = "AuthorizationToken"
 
 // ----------------------------  DIVIDER  on start ----------------------------
@@ -58,7 +58,7 @@ function makeVisible() {
 function checkVisiblity() {
   let isVisibleString = localStorage.getItem("isVisible")
   let isVisible = isVisibleString ? JSON.parse(isVisibleString) : false
-  isVisible ? document.getElementById("toggleSecondAccordion").click() : null
+  if (isVisible) document.getElementById("toggleSecondAccordion").click()
 }
 
 function onInit() {
@@ -168,34 +168,22 @@ function clearLocalStorage() {
 // ----------------------------  DIVIDER  notifications -----------------------
 function notifications(message, status) {
   // status => error | success
-  const errorClasses = ["d-flex", "alert", "alert-danger"]
-  const successClasses = ["d-flex", "alert", "alert-success"]
-
-  const notification = document.getElementById("notification")
-  notification.classList.value = "d-none"
-
-  let span = document.createElement("span")
-  span.textContent = message
-  notification.appendChild(span)
-
-  // notification.textContent = message
-  // notification.innerHTML = span
-
-  notification.classList.remove("d-none")
-
-  status == "error" ? notification.classList.add(...errorClasses) : notification.classList.add(...successClasses)
-
-  // Clear existing timeout if it exists
-  if (notificationTimeout) {
-    clearTimeout(notificationTimeout)
-  }
-
-  notificationTimeout = setTimeout(() => {
-    notification.innerText = ""
-
-    status == "error" ? notification.classList.remove(...errorClasses) : notification.classList.remove(...successClasses)
-
-    notification.classList.add("d-none")
+  const errorClasses = ["notification", "d-flex", "alert", "alert-danger"]
+  const successClasses = ["notification", "d-flex", "alert", "alert-success"]
+  const notificationsContainer = document.querySelector("#notificationsContainer")
+  const divIndex = notificationsList.length
+  // create div
+  let div = document.createElement("div")
+  div.textContent = message
+  if (status == "error") div.classList.add(...errorClasses)
+  else div.classList.add(...successClasses)
+  // append div
+  notificationsList.push(div)
+  notificationsContainer.appendChild(div)
+  // remove div after 5 seconds
+  setTimeout(() => {
+    notificationsContainer.removeChild(div)
+    notificationsList.splice(divIndex, 1)
   }, 5000)
 }
 

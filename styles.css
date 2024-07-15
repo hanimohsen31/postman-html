@@ -141,7 +141,7 @@ body .container #accordion .save .btn {
   display: flex;
   justify-content: center;
 }
-body .container #notification {
+body .container #notificationsContainer {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -150,13 +150,12 @@ body .container #notification {
   padding: 20px;
   transition: all 0.3s ease-in-out;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   z-index: 10000;
 }
-body .container #notification span {
-  border-radius: 5px;
-  margin: 5px;
-  box-shadow: #f4f4f4 0 0;
+body .container #notificationsContainer div {
+  margin-bottom: 0;
+  margin-top: 10px;
 }
 body .container pre {
   background-color: #f8f8f8;
@@ -166,4 +165,31 @@ body .container pre {
   margin-top: 20px;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+.visibility-button {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  height: 100%;
+}
+.visibility-button .invisible {
+  font-size: 20px;
+}
+.visibility-button .make-visible {
+  border: none;
+  background: none;
+  font-size: large;
+  height: 100%;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  font-size: small;
+}
+.visibility-button .make-visible span {
+  border: 1px solid rgba(6, 38, 218, 0.651);
+  color: rgba(6, 38, 218, 0.651);
+  padding: 5px;
+  border-radius: 7px;
+  opacity: 0.8;
 }/*# sourceMappingURL=styles.css.map */

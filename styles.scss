@@ -114,7 +114,7 @@ body {
     }
 
     #accordion {
-      .make-visible{
+      .make-visible {
         display: flex;
         word-break: keep-all;
         /* display: block; */
@@ -165,7 +165,9 @@ body {
         }
       }
     }
-    #notification {
+    // #notification,
+    // .notification,
+    #notificationsContainer {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -174,12 +176,16 @@ body {
       // transition: property duration timing-function delay|initial|inherit;
       transition: all 0.3s ease-in-out;
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       z-index: 10000;
-      span{
-        border-radius: 5px;
-        margin: 5px;
-        box-shadow: #f4f4f4 0 0;
+      // span {
+      //   border-radius: 5px;
+      //   margin: 5px;
+      //   box-shadow: #f4f4f4 0 0;
+      // }
+      div {
+        margin-bottom: 0;
+        margin-top: 10px;
       }
     }
 
@@ -191,6 +197,32 @@ body {
       margin-top: 20px;
       white-space: pre-wrap;
       word-wrap: break-word;
+    }
+  }
+}
+.visibility-button {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  height: 100%;
+  .invisible {
+    font-size: 20px;
+  }
+  .make-visible {
+    border: none;
+    background: none;
+    font-size: large;
+    height: 100%;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    font-size: small;
+    span {
+      border: 1px solid rgba(6, 38, 218, 0.651);
+      color: rgba(6, 38, 218, 0.651);
+      padding: 5px;
+      border-radius: 7px;
+      opacity: 0.8;
     }
   }
 }
