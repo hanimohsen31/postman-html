@@ -71,10 +71,11 @@ function submit() {
   getInputs()
   setHeaders()
   if (hasErrors) return
-  const options = { method, headers }
+  let options = { method, headers }
   if (requestBody && (method === "POST" || method === "PUT")) setRequestBody()
   if (hasErrors) return
-  fetch(url, options)
+
+  fetch(url, { ...options, body: requestBody })
     .then((response) => {
       showResponseHeaders(response)
       return response.json()
